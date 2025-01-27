@@ -28,7 +28,7 @@ const Section = ({ title, icon: Icon, children }) => (
   </motion.section>
 );
 
-const Project = ({ title, description, tags, link }) => (
+const Project = ({ title, description, tags, liveLink, githubLink }) => (
   <motion.div
     whileHover={{ scale: 1.02 }}
     className="rounded-lg border border-gray-800 bg-gray-900 p-6 shadow-lg"
@@ -45,12 +45,24 @@ const Project = ({ title, description, tags, link }) => (
         </span>
       ))}
     </div>
-    <a
-      href={link}
-      className="flex items-center text-blue-400 transition-colors hover:text-blue-300"
-    >
-      View Project <ExternalLink className="ml-2 h-4 w-4" />
-    </a>
+    <div className="flex space-x-4">
+      {liveLink && (
+        <a
+          href={liveLink}
+          className="flex items-center text-blue-400 transition-colors hover:text-blue-300"
+        >
+          Live <ExternalLink className="ml-2 h-4 w-4" />
+        </a>
+      )}
+      {githubLink && (
+        <a
+          href={githubLink}
+          className="flex items-center text-blue-400 transition-colors hover:text-blue-300"
+        >
+          GitHub <ExternalLink className="ml-2 h-4 w-4" />
+        </a>
+      )}
+    </div>
   </motion.div>
 );
 
@@ -96,7 +108,8 @@ export default function Portfolio() {
       description:
         "A task management application with priority-based task organization, subtask tracking, advanced filtering, intuitive analytics for efficient productivity tracking. ",
       tags: ["React", "Node.js", "MongoDB", "Tailwind CSS", "JWT"],
-      link: "https://taskmate-online.vercel.app/",
+      githubLink: "https://github.com/salmanmhd/TaskMate",
+      liveLink: "https://taskmate-online.vercel.app/",
     },
     {
       title: "Dev Fusion AI",
@@ -111,7 +124,47 @@ export default function Portfolio() {
         "Redis",
         "JWT",
       ],
-      link: "https://github.com/salmanmhd/DevFusion",
+      githubLink: "https://github.com/salmanmhd/DevFusion",
+    },
+    {
+      title: "eShop - Modern E-commerce Platform",
+      description:
+        "A modern e-commerce platform featuring dynamic product listings, real-time cart management, city-based delivery selection, and responsive design with robust state management.",
+      tags: ["React", "Redux Toolkit", "Redux Thunk", "Tailwind CSS", "Axios"],
+      liveLink: "https://eshop-salmanmhd.vercel.app/",
+      githubLink: "https://github.com/salmanmhd/eShop",
+    },
+    {
+      title: "Expense Tracker Application",
+      description:
+        "This project is a robust and user-friendly expense tracker application designed to help users manage their finances efficiently. The application provides a clean and intuitive interface for tracking expenses, incomes, and generating reports.",
+      tags: ["React", "React router", "Redux", "CSS"],
+      liveLink: "https://expe-tracker.vercel.app/",
+      githubLink: "https://github.com/salmanmhd/Expense-Tracker",
+    },
+    {
+      title: "Worldwise",
+      description:
+        "An interactive travel tracking platform featuring map-based visualization, personalized travel logs, and comprehensive trip management with dynamic data loading and protected user experiences.",
+      tags: ["React", "React Router", "Context API", "Node js", "Express", "Lazy loading"],
+      liveLink: "https://salmanmhd-worldwise.vercel.app/",
+      githubLink: "https://github.com/salmanmhd/World-Wise",
+    },
+    {
+      title: "usePocorn",
+      description:
+        "A movie discovery and rating platform featuring real-time search, personalized watchlists, interactive rating system, and comprehensive watch statistics with local storage persistence.",
+      tags: ["React", "Custom Hooks", "Restful API", "Performance Optimization"],
+      liveLink: "https://salmanmhd-usepopcorn.vercel.app/",
+      githubLink: "https://github.com/salmanmhd/Use-Popcorn",
+    },
+    {
+      title: "Zen Timer",
+      description:
+        "Zen Timer is a modern, minimalist productivity timer built with React. The application allows users to set custom countdown timers with minute and second precision, making it perfect for productivity intervals, or any timed activities.",
+      tags: ["React", "React Hooks", "Tailwind"],
+      liveLink: "https://zen-timer.vercel.app/",
+      githubLink: "https://github.com/salmanmhd/ZenTimer",
     },
   ];
 
@@ -120,13 +173,21 @@ export default function Portfolio() {
     "Node.js",
     "Express",
     "MongoDB",
+    "Redux",
+    "Context API",
+    "Redux Toolkit",
+    "Thunks",
+    "Typescript",
     "JavaScript",
     "Java",
-    "Redux",
+    "PostgreSQL",
     "REST APIs",
     "Tailwind CSS",
     "Git",
     "Postman",
+    "JWT",
+    "HTML",
+    "CSS",  
   ];
 
   return (
@@ -136,9 +197,9 @@ export default function Portfolio() {
         animate={backgroundControls}
         transition={{ type: "tween", ease: "linear", duration: 0.2 }}
       />
-      <div className="relative z-10 mx-auto max-w-4xl px-4 py-16">
-        <header className="mb-16 text-center">
-          <div className="mb-8 h-[300px] w-full">
+      <div className="relative z-10 mx-auto max-w-4xl px-4 pb-16 pt-1 lg:pt-1">
+        <header className="mb-8 text-center">
+          <div className="mb-2 h-[280px] w-full lg:mb-6 lg:mt-8 lg:h-[470px]">
             <Canvas camera={{ position: [0, 0, 5] }}>
               <ambientLight intensity={0.5} />
               <pointLight position={[10, 10, 10]} />
@@ -150,7 +211,7 @@ export default function Portfolio() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="mb-4 bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-5xl font-bold text-transparent"
+            className="mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-5xl font-bold text-transparent"
           >
             Md Salman
           </motion.h1>
@@ -166,7 +227,7 @@ export default function Portfolio() {
 
         <Section title="About Me" icon={User}>
           <p className="text-lg leading-relaxed text-gray-300">
-            Salman, a full-stack developer passionate about building efficient,
+            I am a full-stack developer passionate about building efficient,
             scalable, and user-focused web applications. A continuous learner
             who is trying to contribute to impactful projects that make a
             difference.
